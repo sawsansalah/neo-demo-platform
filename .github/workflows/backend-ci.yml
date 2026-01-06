@@ -1,0 +1,31 @@
+name: build-and-deploy
+
+on:
+  workflow_call:
+    inputs:
+      microservice:
+        required: true
+        type: string
+      env:
+        required: true
+        type: string
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          echo "Building Docker image for ${{ inputs.microservice }} in environment ${{ inputs.env }}..."
+          # simulate Docker build
+          echo "docker build -t ${{ inputs.microservice }}-${{ inputs.env }} ."
+
+      - name: Deploy to environment
+        run: |
+          echo "Deploying ${{ inputs.microservice }} to ${{ inputs.env }} environment..."
+          # simulate deployment
+          echo "Deployment SUCCESS!"
+
